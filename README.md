@@ -4,10 +4,20 @@
 <a href='https://pypi.org/project/potcoder/' target="_blank"><img alt='pypi' src='https://img.shields.io/badge/PyPI_Download-100000?style=for-the-badge&logo=pypi&logoColor=FFFFFF&labelColor=515153&color=232A79'/></a>
 
 ## Requirements
-- `Python` version >= `3.8`
-- Some additional modules
+Note: If you don't know what your computer's Python version is, you can access Windows Powershell and enter the command `irm https://raw.githubusercontent.com/hiactions/potcoder/tree/tools/python-version-checker.ps1 | iex`. Then use the Python version displayed on the screen to check if PotCoder supports your Python version
 
-> Warning: If you import the `potcoder` module in `Python IDLE`, `Python IDLE` will not display information about `potcoder` such as version, .... And when running `potcoder.cli()` it gives `potcoder-UNKOWN` or shows error and doesn't run.
+The table below lists all Python versions that PotCoder supported:
+| Python Version | Supported |
+| :---: | :---: |
+| 3.5 | [ ] |
+| 3.6 | [ ] |
+| 3.7 | [ ] |
+| 3.8 | [x] |
+| 3.9 | [x] |
+| 3.10 | [x] |
+| 3.11 | [x] |
+| >= 3.12 | [x] |
+
 
 ## How to use
 Install via `pip` (Recommended):
