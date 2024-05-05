@@ -1,15 +1,17 @@
 # Welcome to Potcoder, a module created for the Python language that makes programming easier for programmers and developers
-# PotCoder will need additional additional modules, details can be found at https://github.com/hiactions/potcoder/
+# PotCoder will need additional modules, details can be found at https://github.com/hiactions/potcoder/
 
+# Import modules
 import os
-# import openai [Uncomment if you want to use PyGPT (potcode.pygpt)]
-# import platform (Comment with openai module)
+import openai
+import platform
 import subprocess
 import wget
 import sys
 from pytube import YouTube
 from dotenv import load_dotenv
 
+# Load .env file
 load_dotenv()
 
 # Get the value of the environment variable "POTCODER-VERSION"
@@ -19,7 +21,7 @@ potcoder_version = os.getenv("POTCODER-VERSION")
 if potcoder_version is not None:
     print(f"Welcome to PotCoder [v{potcoder_version}]")
 
-# Converts strings to binary code [Usage: potcoder.conv_str_bin("[Question when running Python code]")]
+# Converts strings to binary code [Usage: potcoder.conv_str_bin([Machine Question])]
 def conv_str_bin(machine_question):
     user_input = input(machine_question)
     binary_result = ''.join(format(ord(char), '08b') for char in user_input)
@@ -71,32 +73,32 @@ def cli():
         else:
             print(f"potcoder-{potcoder_version}  [RETURN] >> I don't understand what you are asking me to do :)?")
 
-# ChatGPT built with Python [Usage: potcoder.pygpt([Your API Key], [Model ID], [Machine Question])] (Note: Uncomment if you want to use PyGPT)
-# def pygpt(openai_api_key, openai_model_id, machine_question):
-#     openai.api_key = openai_api_key
-#     MODEL_ID = openai_model_id
+# ChatGPT built with Python [Usage: potcoder.pygpt([API Key], [Model ID], [Machine Question])] (Note: Uncomment if you want to use PyGPT)
+def pygpt(openai_api_key, openai_model_id, machine_question):
+    openai.api_key = openai_api_key
+    MODEL_ID = openai_model_id
 
-#     def PyGPT_conversation(conversation):
-#         response = openai.ChatCompletion.create(
-#             model=MODEL_ID,
-#             messages=conversation
-#         )
-#         conversation.append({'role': response.choices[0].message.role, 'content': response.choices[0].message.content})
-#         return conversation
+    def PyGPT_conversation(conversation):
+        response = openai.ChatCompletion.create(
+            model=MODEL_ID,
+            messages=conversation
+        )
+        conversation.append({'role': response.choices[0].message.role, 'content': response.choices[0].message.content})
+        return conversation
 
-#     conversation = []
-#     conversation.append({'role': 'system', 'content': 'How may I help you?'})
-#     conversation = PyGPT_conversation(conversation)
-#     print(f"{machine_question}: {conversation[-1]['content'].strip()}\n")
+    conversation = []
+    conversation.append({'role': 'system', 'content': 'How may I help you?'})
+    conversation = PyGPT_conversation(conversation)
+    print(f"{machine_question}: {conversation[-1]['content'].strip()}\n")
 
-#     while True:
-#         prompt = input(machine_question)
-#         if prompt == "gptFoundation()":
-#             print("Foundation: Python v" + platform.python_version() + " with " + MODEL_ID)
-#         else:
-#             conversation.append({'role': 'user', 'content': prompt})
-#             conversation = PyGPT_conversation(conversation)
-#             print(f"{machine_question} {conversation[-1]['content'].strip()}\n")
+    while True:
+        prompt = input(machine_question)
+        if prompt == "gptFoundation()":
+            print("Foundation: Python v" + platform.python_version() + " with " + MODEL_ID)
+        else:
+            conversation.append({'role': 'user', 'content': prompt})
+            conversation = PyGPT_conversation(conversation)
+            print(f"{machine_question} {conversation[-1]['content'].strip()}\n")
 
 
 # Python Runtime Environment Checker (IDLE or CLI) [Usage: potcoder.pyenv_detect()] (Note: When you use potcoder.pyenv_detect() function, the result will be returned to one of two values: "IDLE" or "CLI")
@@ -106,7 +108,7 @@ def pyenv_detect():
     else:
         return "CLI"
     
-# Download high quality Youtube videos [Usage: potcode.ytdl([Youtube video link], [Successful download message], [Error download message])]
+# Download high quality Youtube videos [Usage: potcode.ytdl([Machine Question], [Successful download message], [Error download message])]
 def ytdl(machine_question, success_msg, err_msg):
     yt_link = input(machine_question)
     youtubeObject = YouTube(yt_link)
